@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Quiz & Assessment | SkillPilot AI</title>
+    <link rel="stylesheet" href="quiz.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar">
+        <a href="index.html" class="logo" style="text-decoration:none; display:flex; align-items:center; gap:8px;">
+            <span style="color:#4f46e5; font-size:24px;">✦</span>
+            <span>SkillPilot AI</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="learning.html">Learning Workspace</a>
+            <a href="quiz.html" style="color:#4f46e5; font-weight:700;">Quiz</a>
+        </div>
+    </nav>
+
+    <!-- ================= MAIN ================= -->
+    <main class="main-container">
+
+        <!-- ================= CONFIG SECTION ================= -->
+        <section class="quiz-config" id="quizConfig">
+            <span class="badge">AI KNOWLEDGE ASSESSMENT</span>
+            <h1>Test Your Understanding</h1>
+            <p class="subtitle">
+                Configure your subject and topic, and Google Gemini will generate an interactive, personalized assessment with instant feedback.
+            </p>
+
+            <div class="config-card">
+                <h2>Quiz Configuration</h2>
+                <p>Tailor the questions to your current learning objectives.</p>
+
+                <label for="subject">Domain / Subject</label>
+                <select id="subject">
+                    <option value="">Select Domain</option>
+                    <option value="Computer Science" selected>Computer Science</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="General Knowledge">General Knowledge</option>
+                </select>
+
+                <label for="topic">Topic</label>
+                <input type="text" id="topic" placeholder="e.g. Data Structures, Neural Networks, Thermodynamics" value="Data Structures">
+
+                <label for="difficulty">Difficulty Level</label>
+                <select id="difficulty">
+                    <option value="Beginner" selected>Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+
+                <label for="questionCount">Number of Questions</label>
+                <select id="questionCount">
+                    <option value="5" selected>5 Questions</option>
+                    <option value="10">10 Questions</option>
+                    <option value="15">15 Questions</option>
+                </select>
+
+                <button id="generateBtn" type="button">
+                    Generate AI Quiz With Gemini ✦
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= LOADING SECTION ================= -->
+        <section class="loading-section" id="loadingSection">
+            <div class="loader"></div>
+            <h2>Generating Personalized Quiz...</h2>
+            <p id="loadingMsg">Google Gemini is analyzing your topic and crafting questions with explanations.</p>
+        </section>
+
+        <!-- ================= QUIZ SECTION ================= -->
+        <section class="quiz-section" id="quizSection">
+            <div class="quiz-header">
+                <div>
+                    <h2 id="quizSubject">Subject</h2>
+                    <p id="quizTopic" style="color:#6b7280; margin-top:4px;">Topic • Level</p>
+                </div>
+
+                <div class="question-number">
+                    Question <span id="currentQuestion">1</span> / <span id="totalQuestions">5</span>
+                </div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="question-card">
+                <h2 id="questionText">Loading question...</h2>
+
+                <div class="options-container" id="options">
+                    <!-- Options injected by quiz.js -->
+                </div>
+
+                <!-- Explanation shown after selecting or answering -->
+                <div id="inlineExplanation" style="display:none; margin-top:20px; padding:16px 20px; border-radius:12px; font-size:15px; line-height:1.5;"></div>
+
+                <div class="quiz-buttons">
+                    <button id="nextBtn" type="button">Next Question →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= RESULTS SECTION ================= -->
+        <section class="result-section" id="resultSection">
+            <div class="result-card">
+                <div class="result-icon">🎯</div>
+                <h2 style="font-size:32px; margin-top:10px;">Assessment Complete!</h2>
+                <p style="color:#6b7280; margin-top:8px;">Here is your personalized competency breakdown:</p>
+
+                <div class="score-circle" id="scoreText">0/0</div>
+
+                <p id="performanceText" style="font-size:20px; font-weight:700; color:#172554;"></p>
+
+                <div class="analysis-box" id="analysisBox">
+                    <!-- Analysis injected by quiz.js -->
+                </div>
+
+                <!-- Detailed review of questions -->
+                <div id="detailedReview" style="margin-top:35px; text-align:left;">
+                    <h3 style="font-size:18px; margin-bottom:15px; color:#1e293b;">Question Review & Explanations:</h3>
+                    <div id="reviewQuestionsList" style="display:flex; flex-direction:column; gap:16px;"></div>
+                </div>
+
+                <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap; margin-top:35px;">
+                    <button id="restartBtn" type="button">Take Another Quiz</button>
+                    <a href="learning.html" style="padding:15px 25px; border-radius:10px; background:#e0e7ff; color:#3730a3; text-decoration:none; font-weight:bold; display:inline-flex; align-items:center; gap:8px;">
+                        <i class="fa-solid fa-arrow-left"></i> Learning Workspace
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
